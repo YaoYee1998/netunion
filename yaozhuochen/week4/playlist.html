@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Webville Tunes</title>
+<meta charset="utf-8">
+<script >
+    window.onload = init;
+
+    function init() {
+        var button = document.getElementById("addButton");
+        button.onclick = handleButtonClick;
+
+        loadPlaylist();
+    }
+
+    function handleButtonClick(e) {
+        var textInput = document.getElementById("songTextInput");
+        var songName = textInput.value;
+        //alert("Adding " + songName);
+
+        if (songName == "") {
+            alert("Please enter a song");
+        }
+        else {
+            //alert("Adding " + songName);
+            var li = document.createElement("li");
+            li.innerHTML = songName;
+            var ul = document.getElementById("playlist");
+            ul.appendChild(li);
+
+            // for Ready Bake
+            save(songName);
+        }
+    }
+</script>
+<script>
+    function save(item) {
+        var playlistArray = getStoreArray("playlist");
+        playlistArray.push(item);
+        localStorage.setItem("playlist", JSON.stringify(playlistArray));
+    }
+
+    function loadPlaylist() {
+        var playlistArray = getSavedSongs();
+        var ul = document.getElementById("playlist");
+        if (playlistArray != null) {
+            for (var i = 0; i < playlistArray.length; i++) {
+                var li = document.createElement("li");
+                li.innerHTML = playlistArray[i];
+                ul.appendChild(li);
+            }
+        }
+    }
+
+    function getSavedSongs() {
+        return getStoreArray("playlist");
+    }
+
+    function getStoreArray(key) {
+        var playlistArray = localStorage.getItem(key);
+        if (playlistArray == null || playlistArray == "") {
+            playlistArray = new Array();
+        }
+        else {
+            playlistArray = JSON.parse(playlistArray);
+        }
+        return playlistArray;
+    }
+
+    function deleteArray(key) {
+        var playlistArray = localStorage.removeItem(key);
+
+        for (var i = 0; i < playlistArray.length; i++) {
+            if (key === playlistArray[i]) {
+                playlistArray.splice(i, 1);
+            }
+        }
+
+        localStorage.setItem("playlistArray", JSON.stringify(notesArray));
+
+        deleteArrayFromDOM(key);
+
+    }
+
+    function deleteArrayFromDOM(key) {
+        var note = document.getElementById(key);
+        note.parentNode.removeChild(note);
+    }
+
+
+</script>
+<style>
+    body {
+        font-family: arial, sans-serif;
+    }
+
+    ul#playlist {
+        border: 1px solid #a9a9a9;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        margin-top: 10px;
+        padding: 0px;
+        list-style-type: none;
+    }
+
+    ul#playlist li {
+        border-bottom: 1px solid #a9a9a9;
+        padding: 10px;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#e3e3e3));
+        background-image: -moz-linear-gradient(#f9f9f9, #e3e3e3);
+        background-image: -ms-linear-gradient(#f9f9f9, #e3e3e3);
+        background-image: -o-linear-gradient(#f9f9f9, #e3e3e3);
+        background-image: -webkit-linear-gradient(#f9f9f9, #e3e3e3);
+        background-image: linear-gradient(#f9f9f9, #e3e3e3);
+    }
+
+    ul#playlist li:last-child {
+        -webkit-border-bottom-right-radius: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -moz-border-radius-bottomright: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        border-bottom: none;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+    ul#playlist li:first-child {
+        -webkit-border-top-right-radius: 5px;
+        -webkit-border-top-left-radius: 5px;
+        -moz-border-radius-topright: 5px;
+        -moz-border-radius-topleft: 5px;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+
+
+</style>
+</head>
+<body>
+
+<form>
+<input type="text" id="songTextInput" size="40" placeholder="Song name">
+<input type="button" id="addButton" value="Add Song">
+</form>
+
+<ul id="playlist">
+
+</ul>
+
+</body>
+</html>
+

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        .btn-wrap{
+            text-align: center;
+            padding-top: 20px;
+        }
+        .btn-wrap button{
+            display: inline-block;
+            padding:4px 10px;
+        }
+
+        .wrap .value{
+            position: absolute;
+            background:red;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="wrap">
+        <div class="value" style="width: 40px; height: 40px; border-radius: 20px; left: 620px; top: 100px">【1】</div>
+
+        <div class="leftTree">
+            <div class="value" style="width: 40px; height: 40px; border-radius: 20px; left: 500px; top: 200px">【2】</div>
+
+            <div class="leftTree">
+                <div class="value"  style="width: 40px; height: 40px; border-radius: 20px; left: 440px; top: 300px">【4】</div>
+
+                <div class="leftTree">
+                    <div class="value"  style="width: 40px; height: 40px; border-radius: 20px; left: 380px; top: 400px">【8】</div>
+                </div>
+
+                <div class="rightTree">
+                    <div class="value"  style="width: 40px; height: 40px; border-radius: 20px; left: 500px; top: 400px">【9】</div>
+                </div>
+
+            </div>
+
+            <div class="rightTree">
+                <div class="value" style="width: 40px; height: 40px; border-radius: 20px; left: 560px; top: 300px">【5】</div>
+            </div>
+        </div>
+
+        <div class="rightTree">
+            <div class="value" style="width: 40px; height: 40px; border-radius: 20px; left: 740px; top: 200px">【3】</div>
+
+            <div class="leftTree">
+                <div class="value" style="width: 40px; height: 40px; border-radius: 20px; left: 680px; top: 300px">【6】</div>
+            </div>
+
+            <div class="rightTree">
+                <div class="value"  style="width: 40px; height: 40px; border-radius: 20px; left: 800px; top: 300px">【7】</div>
+            </div>
+
+        </div>
+
+    </div>
+
+<div class="btn-wrap">
+    <button>前序</button>
+    <button>中序</button>
+    <button>后序</button>
+</div>
+
+ <script>
+    var wrap = document.querySelector(".wrap");
+    var btn_wrap = document.querySelector(".btn-wrap");
+    var btn1 = btn_wrap.querySelectorAll("button")[0];
+    var btn2 = btn_wrap.querySelectorAll("button")[1];
+    var btn3 = btn_wrap.querySelectorAll("button")[2];
+    var arr = [];
+    var last;
+    var toggle = false;
+    //给按钮绑定事件
+    btn1.onclick = function(){
+        if(!toggle){
+            toggle = true;
+            reset();
+            preOrder(wrap);
+            showWay();
+        }
+    }
+    btn2.onclick = function(){
+        if(!toggle){
+            toggle = true;
+            reset();
+            inOrder(wrap);
+            showWay();
+        }
+    }
+    btn3.onclick = function(){
+        if(!toggle){
+            toggle = true;
+            reset();
+            postOrder(wrap);
+            showWay();
+        }
+    }
+    //二叉树的遍历的三种方式
+    //(1)前序遍历（DLR
+    function preOrder(node){
+        if (!node) {
+            return;
+        }
+        var childNodesArray = Array.prototype.slice.call(node.childNodes);
+        var value = childNodesArray.find(node => node.className === 'value');
+        var leftTree = childNodesArray.find(node => node.className === 'leftTree');
+        var rightTree = childNodesArray.find(node => node.className === 'rightTree');
+        arr.push(value); // 根节点
+        console.log(value.innerText);
+        preOrder(leftTree); // 左子树
+        preOrder(rightTree); // 右子树
+    }
+    //(2)中序遍历（LDR）
+    function inOrder(node){
+        if (!node) {
+            return;
+        }
+        var childNodesArray = Array.prototype.slice.call(node.childNodes);
+        var value = childNodesArray.find(node => node.className === 'value');
+        var leftTree = childNodesArray.find(node => node.className === 'leftTree');
+        var rightTree = childNodesArray.find(node => node.className === 'rightTree');
+        inOrder(leftTree); // 左子树
+        arr.push(value); // 根节点
+        console.log(value.innerText);
+        inOrder(rightTree); // 右子树
+    }
+    //(3)后序遍历（LRD）
+    function postOrder(node){
+        if (!node) {
+            return;
+        }
+        var childNodesArray = Array.prototype.slice.call(node.childNodes);
+        var value = childNodesArray.find(node => node.className === 'value');
+        var leftTree = childNodesArray.find(node => node.className === 'leftTree');
+        var rightTree = childNodesArray.find(node => node.className === 'rightTree');
+        postOrder(leftTree); // 左子树
+        postOrder(rightTree); // 右子树
+        arr.push(value); // 根节点
+        console.log(value.innerText);
+    }
+    //显示遍历的过程
+    function showWay(){
+        for(var i=0; i<arr.length; i++){
+            setTimeout(function(i){
+                return function(){
+                    if(i == arr.length-1){
+                        toggle = false;
+                    }
+                    if(last){
+                        last.style.background = "red";
+                    }
+                    arr[i].style.background = "green";
+                    last = arr[i];
+                }
+            }(i),i*100)
+        }
+    }
+
+    //初始化
+    function reset(){
+        arr = [];
+        if(last){
+            last.style.background = "red";
+        }
+    }
+ </script>
+
+</body>

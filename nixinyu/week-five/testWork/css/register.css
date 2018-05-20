@@ -51,3 +51,38 @@ h1{
     box-shadow: 0px 0px 5px #000;
     margin: 10px;
 }
+
+/* tips */
+
+#LeftTips{
+    padding: 20px;
+    font-family: "微软雅黑 Light";
+    width: 260px;
+    height: 280px;
+    background: #65c294;
+    position: absolute;
+    box-shadow: 0px 0px 20px #65c294;
+    top: 140px;
+    left: 100px;
+}
+#LeftTips > img{
+    width: 100px;
+    height: 100px;
+    margin: 10px 85px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

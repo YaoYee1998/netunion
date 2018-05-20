@@ -1,6 +1,88 @@
 {
-  "username":"123456",
-  "password":"111111",
-  "phonenumber":"16602803351",
-  "e-email":"940306566@qq.com"
+  "users": [
+    {
+      "id": 1,
+      "username": "123456",
+      "password": "111111",
+      "phonenumber": "16602803351",
+      "e-email": "940306566@qq.com"
+    },
+    {
+      "username": "1231242",
+      "password": "123123123",
+      "phonenumber": "11111111111",
+      "e-mail": "2314124",
+      "id": 2
+    },
+    {
+      "username": "1231242",
+      "password": "123123123",
+      "phonenumber": "11111111111",
+      "e-mail": "2314124",
+      "id": 3
+    },
+    {
+      "username": "1231242",
+      "password": "123123123",
+      "phonenumber": "11111111111",
+      "e-mail": "2314124",
+      "id": 4
+    },
+    {
+      "username": "1231242",
+      "password": "123123123",
+      "phonenumber": "11111111111",
+      "e-mail": "2314124",
+      "id": 5
+    },
+    {
+      "username": "1231242",
+      "password": "123123123",
+      "phonenumber": "11111111111",
+      "e-mail": "2314124",
+      "id": 6
+    },
+    {
+      "username": "1231242",
+      "password": "123123123",
+      "phonenumber": "11111111111",
+      "e-mail": "2314124",
+      "id": 7
+    },
+    {
+      "username": "nixinyu",
+      "password": "qweqwe",
+      "phonenumber": "11111111111",
+      "e-mail": "940306566@qq.com",
+      "id": 8
+    },
+    {
+      "username": "nixinyu",
+      "password": "qweqwe",
+      "phonenumber": "11111111111",
+      "e-mail": "940306566@qq.com",
+      "id": 9
+    },
+    {
+      "username": "nixinyu123",
+      "password": "123123",
+      "phonenumber": "11111111111",
+      "e-mail": "123@qq.com",
+      "id": 10
+    },
+    {
+      "username": "nixinyu1234",
+      "password": "123123",
+      "phonenumber": "11111111111",
+      "e-mail": "940306566@qq.com",
+      "id": 11
+    },
+    {
+      "username": "nixinyu111",
+      "password": "123123",
+      "phonenumber": "11111111111",
+      "e-mail": "123@qq.com",
+      "id": 12
+    }
+  ]
 }
